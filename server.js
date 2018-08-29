@@ -51,3 +51,25 @@ app.get("/", function(req, res) {
     res.json(visitorCount);
   });
 
+
+//Toms code added
+  if(reservations.length < 5) {
+    app.post("/api/reservations", function(req, res){
+        var newreservation = req.body;
+        newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase();
+        console.log(newreservation);
+        reservations.push(newreservation);
+        res.json(newreservation);
+    });
+    }
+    else {
+        app.post("/api/waitlist", function(req, res){
+            var newreservation = req.body;
+            newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase();
+            console.log(newreservation);
+            reservations.push(newreservation);
+            res.json(newreservation);
+        });
+    }
+  
+module.exports = server.js;
